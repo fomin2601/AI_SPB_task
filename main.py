@@ -19,7 +19,8 @@ def read_speak(text):
 while True:
     read_speak(text)
     read_speak("создаю временные ряды")
-    in_data_co = yf.download(input(">>>"),start="2014-01-01",end= str(time.strftime("%Y-%m-%d")),interval = "1d")
+    inn = input(">>>")
+    in_data_co = yf.download(inn,start="2014-01-01",end= str(time.strftime("%Y-%m-%d")),interval = "1d")
 
     for i in range(1):
         time.sleep(1)
@@ -37,7 +38,8 @@ while True:
         data_pandas.to_csv("test.csv")
         if i == 0:
             print(i)
-            print(data_filter_close["Close"][0])
-            read_speak(str(int(data_filter_close["Close"][0])))
+            print(data_filter_close["Close"][-1])
+            read_speak(str(int(data_filter_close["Close"][-1])))
+            read_speak(str(inn))
             read_speak("закрываю программу")
             exit()
