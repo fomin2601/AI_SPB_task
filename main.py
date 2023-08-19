@@ -12,7 +12,7 @@ speak.Rate = 3
 speak.Volume = 100
 
 text = "бот активирован"
-
+text = "подключен yfinance введите название данных акций"
 def read_speak(text):
     speak.Speak(text)
 
@@ -29,17 +29,24 @@ while True:
 
         data_filter_close = in_data_co.filter(["Close"])
         plt.plot(data_filter_close)
-        plt.savefig(str(time.time()) + ".png")
+        plt.savefig(str(inn) + ".png")
         plt.show()
         data_pandas = pd.DataFrame(np.array(in_data_co["Close"]))
 
         #print(np.array([i,data_time]))
         #print(data_pandas)
-        data_pandas.to_csv("test.csv")
+        data_pandas.to_csv(str(inn) + ".csv")
         if i == 0:
             print(i)
             print(data_filter_close["Close"][-1])
             read_speak(str(int(data_filter_close["Close"][-1])))
             read_speak(str(inn))
+            read_speak("Анализ данных")
+            read_speak("количество строк")
+            read_speak(data_filter_close.shape[0])
+            read_speak("Применяю метод линейной регрессии для прогнозирования")
+            print(data_filter_close)
+
+
             read_speak("закрываю программу")
             exit()
