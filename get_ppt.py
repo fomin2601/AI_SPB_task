@@ -58,7 +58,8 @@ info = {
     'contacts': '12345',
 }
 
-print(parsing.get_market_size(codes['Advertising & Marketing']))
+#print(parsing.get_market_size(codes['Advertising & Marketing']))
+
 
 def create_slide(prs, info, content, slide_type=1):
     slide = prs.slides.add_slide(prs.slide_layouts[1])
@@ -67,17 +68,19 @@ def create_slide(prs, info, content, slide_type=1):
     title.text = content
     subtitle.text = info[content]
 
-prs = Presentation()
 
-title_slide_layout = prs.slide_layouts[0]
-slide = prs.slides.add_slide(title_slide_layout)
-title = slide.shapes.title
-subtitle = slide.placeholders[1]
+def build_pptx():
+    prs = Presentation()
 
-title.text = info['project_name']
-subtitle.text = "python-pptx was here!"
+    title_slide_layout = prs.slide_layouts[0]
+    slide = prs.slides.add_slide(title_slide_layout)
+    title = slide.shapes.title
+    subtitle = slide.placeholders[1]
 
-for key in info:
-    create_slide(prs, info, key, slide_type=1)
+    title.text = info['project_name']
+    subtitle.text = "python-pptx was here!"
 
-prs.save('test.pptx')
+    for key in info:
+        create_slide(prs, info, key, slide_type=1)
+
+    prs.save('test.pptx')

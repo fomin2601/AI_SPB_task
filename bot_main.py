@@ -5,6 +5,7 @@ import os
 from telebot import types
 from pptx import Presentation
 from pptx.util import Inches
+import get_ppt
 
 TOKEN = '6520533736:AAHtygH83eGv6AKZwoUYSiuT7-LFPt54ZI0'
 bot = telebot.TeleBot(TOKEN)
@@ -16,7 +17,7 @@ def start(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_yes = types.InlineKeyboardButton("да")
     btn_no = types.InlineKeyboardButton("нет")
-    btn_start = types.InlineKeyboardButton("/start")
+    btn_start = types.InlineKeyboardButton("start")
     markup.add(btn_yes, btn_no)
     markup.add(btn_start)
     chat_id = message.chat.id
@@ -34,15 +35,31 @@ def ask_question(message):
     markup.add(btn_start)
 
     if 'да' in user_input:
-        bot.register_next_step_handler(message, company_name_step)
+        bot.register_next_step_handler(message, scope_step)
     elif 'нет' in user_input:
         bot.send_message(message.chat.id, 'Хорошо, если у вас появятся вопросы, обращайтесь!')
     else:
         pass
 
 
+def scope_step(message):
+    scopes = get_ppt.codes
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    buttons = []
+
+    for i, key in enumerate(scopes.keys()):
+        buttons.append(types.InlineKeyboardButton(key))
+        if (i + 1) % 4 == 0:
+            markup.add(*buttons)
+            buttons = []
+
+    bot.send_message(message.chat.id, 'В какой области работает компания?', reply_markup=markup)
+    bot.register_next_step_handler(message, company_name_step)
+
+
 def company_name_step(message):
-    bot.send_message(message.chat.id, '1. Введите название компании')
+    answers['scope'] = message.text
+    bot.send_message(message.chat.id, '1. Введите название компании', reply_markup=types.ReplyKeyboardRemove())
     bot.register_next_step_handler(message, short_description_step)
 
 
