@@ -6,6 +6,7 @@ from telebot import types
 from pptx import Presentation
 from pptx.util import Inches
 import get_ppt
+from utils import market, parsing
 
 TOKEN = '6520533736:AAHtygH83eGv6AKZwoUYSiuT7-LFPt54ZI0'
 bot = telebot.TeleBot(TOKEN)
@@ -179,7 +180,9 @@ def pptx_creating_step(message):
     title = slide.shapes.title
     subtitle = slide.placeholders[1]
     title.text = 'Анализ рынка'
-    subtitle.text = answers['market']
+    tam, sam, som = market.tam_sam_som(parsing.get_market_size(get_ppt.codes[answers['scope']]))
+    subtitle.text = f'TAM: {tam}\nSAM: {sam}\nSOM: {som}'
+    print('tam/sam/som calculated')
 
     # Конкуренты
     slide = prs.slides.add_slide(prs.slide_layouts[1])
@@ -213,7 +216,7 @@ def pptx_creating_step(message):
     slide = prs.slides.add_slide(prs.slide_layouts[1])
     title = slide.shapes.title
     subtitle = slide.placeholders[1]
-    title.text = 'Инвестиции'
+    title.text = 'Инвестиционный раунд'
     subtitle.text = answers['investments']
 
     # Roadmap
