@@ -1,2 +1,11 @@
-# vor_gor_intc
-конкурса Цифровой Прорыв: Сезон искусственный интеллект 2023
+# Pitch-Deck generator
+
+TODO:
+- Parse data about competitors
+- Compare information with competitors
+- Parse data to calculate business model
+- Calculate business model
+- Parse info to calculate traction and finance model
+- Calculate traction and finance model
+- Django API
+- Web interface
