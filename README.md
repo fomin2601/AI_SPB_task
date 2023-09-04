@@ -1,6 +1,7 @@
 # Pitch-Deck generator
 
 TODO:
+- Style for each slide
 - Parse data about competitors
 - Compare information with competitors
 - Parse data to calculate business model
