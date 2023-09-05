@@ -1,7 +1,7 @@
 # Pitch-Deck generator
 
 TODO:
-- Style for each slide
+- Style for each slide (Light, Dark)
 - Parse data about competitors
 - Compare information with competitors
 - Parse data to calculate business model
