@@ -3,7 +3,7 @@
 TODO:
 - Style for each slide (Light, Dark):
   a. title slide,
-  b. text + image
+  b. text + image (add text size and margin calculating),
   c. TAM/SAM/SOM slide,
   d. contacts 
 - Parse data about competitors
