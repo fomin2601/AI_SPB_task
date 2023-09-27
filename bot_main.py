@@ -5,7 +5,7 @@ import os
 from telebot import types
 from pptx import Presentation
 from pptx.util import Inches
-import get_ppt
+from get_ppt import PitchDeck
 from utils import market, parsing
 
 TOKEN = '6520533736:AAHtygH83eGv6AKZwoUYSiuT7-LFPt54ZI0'
